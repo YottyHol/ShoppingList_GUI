@@ -1,11 +1,17 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import Title from '@/components/Title.vue'
+import { RouterLink, RouterView } from "vue-router";
+import Title from "@/components/Home-Title.vue";
 </script>
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/bag.png" width="125" height="125" />
+    <img
+      alt="Vue logo"
+      class="logo"
+      src="@/assets/bag.png"
+      width="125"
+      height="125"
+    />
 
     <div class="wrapper">
       <Title msg="Happy Shopping" />
@@ -13,7 +19,6 @@ import Title from '@/components/Title.vue'
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
-
       </nav>
     </div>
   </header>
@@ -21,8 +26,4 @@ import Title from '@/components/Title.vue'
   <RouterView />
 </template>
 
-<style>
-
-
-
-</style>
+<style></style>
