@@ -18,7 +18,7 @@ import Title from "@/components/Home-Title.vue";
 
       <nav>
         <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
+        <RouterLink to="/budget">Budget</RouterLink>
       </nav>
     </div>
   </header>
