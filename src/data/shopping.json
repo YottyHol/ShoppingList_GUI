@@ -1,14 +1,14 @@
 {
     "data": [
-        {"id": "1000","code": "f230fh0g3","name": "Apple","description": "Product Description","image": "bamboo-watch.jpg", "checked": true},
-        {"id": "1001","code": "nvklal433","name": "Chicken Sandwich","description": "Product Description","image": "black-watch.jpg", "checked": false},
-        {"id": "1002","code": "zz21cz3c1","name": "Ready Salted Crisps","description": "Product Description","image": "blue-band.jpg", "checked": false},
-        {"id": "1003","code": "244wgerg2","name": "Banana","description": "Product Description","image": "blue-t-shirt.jpg", "checked": false},
-        {"id": "1004","code": "h456wer53","name": "Wholewheat Pasta","description": "Product Description","image": "bracelet.jpg", "checked": false},
-        {"id": "1005","code": "av2231fwg","name": "Courgette","description": "Product Description","image": "brown-purse.jpg", "checked": false},
-        {"id": "1006","code": "bib36pfvm","name": "Beetroot","description": "Product Description","image": "chakra-bracelet.jpg", "checked": false},
-        {"id": "1007","code": "mbvjkgip5","name": "Brown Rice","description": "Product Description","image": "galaxy-earrings.jpg", "checked": false},
-        {"id": "1008","code": "vbb124btr","name": "Cauliflower","description": "Product Description","image": "game-controller.jpg", "checked": false},
-        {"id": "1009","code": "cm230f032","name": "Chickpeas","description": "Product Description","image": "gaming-set.jpg", "checked": false}
+        {"id": "1000","code": "f230fh0g3","name": "Apple", "cost": "1.10", "description": "Product Description","image": "bamboo-watch.jpg", "checked": true},
+        {"id": "1001","code": "nvklal433","name": "Chicken Sandwich","cost": "0.00","description": "Product Description","image": "black-watch.jpg", "checked": false},
+        {"id": "1002","code": "zz21cz3c1","name": "Ready Salted Crisps","cost": "0.00","description": "Product Description","image": "blue-band.jpg", "checked": false},
+        {"id": "1003","code": "244wgerg2","name": "Banana","cost": "0.00","description": "Product Description","image": "blue-t-shirt.jpg", "checked": false},
+        {"id": "1004","code": "h456wer53","name": "Wholewheat Pasta","cost": "0.00","description": "Product Description","image": "bracelet.jpg", "checked": false},
+        {"id": "1005","code": "av2231fwg","name": "Courgette","cost": "0.00","description": "Product Description","image": "brown-purse.jpg", "checked": false},
+        {"id": "1006","code": "bib36pfvm","name": "Beetroot","cost": "0.00","description": "Product Description","image": "chakra-bracelet.jpg", "checked": false},
+        {"id": "1007","code": "mbvjkgip5","name": "Brown Rice","cost": "0.00","description": "Product Description","image": "galaxy-earrings.jpg", "checked": false},
+        {"id": "1008","code": "vbb124btr","name": "Cauliflower","cost": "0.00","description": "Product Description","image": "game-controller.jpg", "checked": false},
+        {"id": "1009","code": "cm230f032","name": "Chickpeas","cost":"0.00","description": "Product Description","image": "gaming-set.jpg", "checked": false}
     ]
 }

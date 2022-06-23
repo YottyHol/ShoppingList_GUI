@@ -15,30 +15,43 @@
           </div>
           <div class="product-list-detail">
             <h3 class="mb-2">{{ slotProps.item.name }}</h3>
+
+            <h4 v-if="slotProps.item.cost != 0" class="mb-2">
+              £{{ slotProps.item.cost }}
+            </h4>
           </div>
           <div class="checkbox-container">
             <CheckBox :binary="true" v-model="slotProps.item.checked" />
           </div>
-          <PVButton
-            class="p-button-danger delete-button"
-            icon="pi pi-times"
-            iconPos="left"
-            @click="deleteItem(slotProps.item)"
-          />
+          <div class="product-list-action">
+            <PVButton
+              class="p-button-danger action-button"
+              icon="pi pi-times"
+              iconPos="left"
+              @click="deleteItem(slotProps.item)"
+            />
+          </div>
         </div>
       </template>
     </OrderList>
     <ConfirmDialog></ConfirmDialog>
+
+    <Search @setVisible="searchC" :visible="searchPage" />
   </div>
 </template>
 
 <script>
+import Search from "./Cost-Search.vue";
 import shopping from "../data/shopping.json";
 export default {
   data() {
     return {
       products: null,
+      searchPage: false,
     };
+  },
+  components: {
+    Search,
   },
 
   mounted() {
@@ -46,6 +59,9 @@ export default {
   },
 
   methods: {
+    searchC() {
+      this.searchPage = !this.searchPage;
+    },
     deleteItem(item) {
       this.$confirm.require({
         message:
@@ -69,6 +85,7 @@ export default {
 <style scoped>
 .checkbox-container {
   text-align: center;
+  margin-right: 1rem;
 }
 
 .new-button {
@@ -80,11 +97,10 @@ export default {
   width: calc(100% - 70px);
 }
 
-.delete-button {
+.action-button {
   max-width: 30px;
   height: 30px;
-  margin: 0.5rem;
-  margin-left: 2rem;
+  margin: 0.1rem;
 }
 .product-item {
   display: flex;
