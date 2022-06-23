@@ -5,6 +5,7 @@
       label="New Item"
       icon="pi pi-plus"
       iconPos="left"
+      @Click="displayAdd()"
     />
     <OrderList v-model="products" listStyle="height:auto" dataKey="id">
       <template #header> Shopping List </template>
@@ -36,22 +37,22 @@
     </OrderList>
     <ConfirmDialog></ConfirmDialog>
 
-    <Search @setVisible="searchC" :visible="searchPage" />
+    <AddItem @setVisible="displayAdd" :visible="addPage" />
   </div>
 </template>
 
 <script>
-import Search from "./Cost-Search.vue";
+import AddItem from "./Add-Item.vue";
 import shopping from "../data/shopping.json";
 export default {
   data() {
     return {
       products: null,
-      searchPage: false,
+      addPage: false,
     };
   },
   components: {
-    Search,
+    AddItem,
   },
 
   mounted() {
@@ -59,8 +60,8 @@ export default {
   },
 
   methods: {
-    searchC() {
-      this.searchPage = !this.searchPage;
+    displayAdd() {
+      this.addPage = !this.addPage;
     },
     deleteItem(item) {
       this.$confirm.require({
