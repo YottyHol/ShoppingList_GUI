@@ -8,10 +8,12 @@
       <div class="field col-12 md:col-4">
         <span class="p-float-label">
           <AutoComplete
+            class="form-input"
             id="autocomplete"
             v-model="item"
             :suggestions="list"
             @complete="fetchData($event)"
+            field="name"
           />
           <label for="autocomplete"> Item</label>
         </span>
@@ -19,7 +21,8 @@
       <div class="field col-12 md:col-4">
         <span class="p-float-label">
           <InputNumber
-            v-model="cost"
+            class="form-input"
+            v-model="item.price"
             mode="currency"
             currency="GBP"
             locale="en-gb"
@@ -41,14 +44,14 @@
 </template>
 
 <script>
+//import { debounce } from "lodash";
 import axios from "axios";
 export default {
   props: { visible: Boolean },
   data() {
     return {
-      cost: 0,
-      item: "",
-      list: [],
+      item: { name: "", price: 0 },
+
       filteredItems: [],
       info: null,
     };
@@ -59,7 +62,7 @@ export default {
     },
 
     fetchData(event) {
-      this.list = axios
+      axios
         .get(
           `https://dev.tescolabs.com/grocery/products/?query=` +
             event.query +
@@ -71,23 +74,17 @@ export default {
           }
         )
         .then((response) => (this.list = response.data.uk.ghs.products.results))
-        //0   .then((response) => console.log(response.data.uk.ghs.products.results))
         .catch((error) => console.log(error));
     },
   },
   mounted() {},
-  watch: {
-    gItems: {
-      deep: true,
-      handler(data) {
-        this.getCities(data[0].country);
-      },
-    },
-  },
 };
 </script>
 
 <style>
+.p-inputtext {
+  width: 100%;
+}
 .p-dialog .p-dialog-header .p-dialog-header-icon:last-child {
   visibility: hidden;
 }
