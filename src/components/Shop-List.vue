@@ -17,8 +17,8 @@
           <div class="product-list-detail">
             <h3 class="mb-2">{{ slotProps.item.name }}</h3>
 
-            <h4 v-if="slotProps.item.cost != 0" class="mb-2">
-              £{{ slotProps.item.cost }}
+            <h4 v-if="slotProps.item.price != 0" class="mb-2">
+              £{{ slotProps.item.price }}
             </h4>
           </div>
           <div class="checkbox-container">
@@ -37,13 +37,14 @@
     </OrderList>
     <ConfirmDialog></ConfirmDialog>
 
-    <AddItem @setVisible="displayAdd" :visible="addPage" />
+    <AddItem @setVisible="displayAdd" @saveItem="saveItem" :visible="addPage" />
   </div>
 </template>
 
 <script>
 import AddItem from "./Add-Item.vue";
 import shopping from "../data/shopping.json";
+import { mapState, mapActions } from "vuex";
 export default {
   data() {
     return {
@@ -58,11 +59,16 @@ export default {
   mounted() {
     this.products = shopping.data;
   },
-
+  computed: {
+    ...mapState("item", ["selected"]),
+  },
   methods: {
+    ...mapActions("item", ["saveItem"]),
     displayAdd() {
       this.addPage = !this.addPage;
+      this.products = shopping.data;
     },
+
     deleteItem(item) {
       this.$confirm.require({
         message:
