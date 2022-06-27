@@ -98,19 +98,3 @@ export default {
   },
 };
 </script>
-
-<style>
-.p-inputtext {
-  width: 400px;
-}
-.p-dialog .p-dialog-header .p-dialog-header-icon:last-child {
-  visibility: hidden;
-}
-
-.form-contents > *:not(:last-child) {
-  display: block;
-
-  margin-top: 20px;
-  margin-bottom: 30px;
-}
-</style>

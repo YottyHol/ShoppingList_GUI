@@ -65,8 +65,9 @@ body {
   background: var(--color-background);
   transition: color 0.5s, background-color 0.5s;
   line-height: 1.6;
-  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
-    Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
   font-size: 15px;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -94,7 +95,7 @@ header {
 a,
 .green {
   text-decoration: none;
-  color: #4CAF50;
+  color: #4caf50;
   transition: 0.4s;
 }
 
@@ -165,4 +166,74 @@ nav a:first-of-type {
     padding: 1rem 0;
     margin-top: 1rem;
   }
+}
+.p-inputtext {
+  width: 400px;
+}
+.p-dialog .p-dialog-header .p-dialog-header-icon:last-child {
+  visibility: hidden;
+}
+
+.form-contents > *:not(:last-child) {
+  display: block;
+
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+h1 {
+  font-weight: 500;
+  font-size: 2.6rem;
+  top: -10px;
+}
+
+h3 {
+  font-size: 1.2rem;
+}
+
+.greetings h1,
+.greetings h3 {
+  text-align: center;
+}
+
+@media (min-width: 1024px) {
+  .greetings h1,
+  .greetings h3 {
+    text-align: left;
+  }
+}
+.checkbox-container {
+  text-align: center;
+  margin-right: 1rem;
+}
+
+.new-button {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  margin-left: 70px;
+  width: calc(100% - 70px);
+}
+
+.action-button {
+  max-width: 30px;
+  height: 30px;
+  margin: 0.1rem;
+}
+.product-item {
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+}
+
+.product-list-detail {
+  flex: 1 1 0;
+}
+
+.product-list-action {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }

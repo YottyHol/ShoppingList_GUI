@@ -7,7 +7,7 @@
       iconPos="left"
       @Click="displayAdd()"
     />
-    <OrderList v-model="products" listStyle="height:auto" dataKey="id">
+    <OrderList v-model="orderProducts" listStyle="height:auto" dataKey="id">
       <template #header> Shopping List </template>
       <template #item="slotProps">
         <div class="product-item">
@@ -48,12 +48,20 @@ export default {
   data() {
     return {
       addPage: false,
+      orderProducts: null,
     };
   },
   components: {
     AddItem,
   },
 
+  watch: {
+    products() {
+      if (this.products) {
+        this.orderProducts = this.products;
+      }
+    },
+  },
   mounted() {
     this.getItems();
   },
@@ -61,12 +69,7 @@ export default {
     ...mapState("item", ["selected", "products"]),
   },
   methods: {
-    ...mapActions("item", [
-      "saveItem",
-      "setProducts",
-      "getItems",
-      "deleteItem",
-    ]),
+    ...mapActions("item", ["saveItem", "getItems", "deleteItem"]),
     save() {
       this.saveItem();
       this.addPage = !this.addPage;
@@ -84,55 +87,16 @@ export default {
         accept: () => {
           this.deleteItem(item.code);
         },
-        reject: () => {
-          //callback to execute when user rejects the action
-        },
       });
     },
   },
 };
 </script>
 <style scoped>
-.checkbox-container {
-  text-align: center;
-  margin-right: 1rem;
-}
-
-.new-button {
-  display: flex;
-  align-items: center;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  margin-left: 70px;
-  width: calc(100% - 70px);
-}
-
-.action-button {
-  max-width: 30px;
-  height: 30px;
-  margin: 0.1rem;
-}
-.product-item {
-  display: flex;
-  align-items: center;
-
-  width: 100%;
-}
-
 img {
   width: 30px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   margin-right: 1rem;
-}
-
-.product-list-detail {
-  flex: 1 1 0;
-}
-
-.product-list-action {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
 }
 
 @media screen and (max-width: 981px) {
