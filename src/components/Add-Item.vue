@@ -16,7 +16,7 @@
             @complete="fetchData($event)"
             field="name"
           />
-          <label for="autocomplete"> Item</label>
+          <label id="item-label" for="autocomplete"> Item</label>
         </span>
       </div>
       <div class="field col-12 md:col-4">
@@ -28,7 +28,7 @@
             currency="GBP"
             locale="en-gb"
           />
-          <label for="username">Price</label>
+          <label id="price-label" for="username">Price</label>
         </span>
       </div>
     </div>
