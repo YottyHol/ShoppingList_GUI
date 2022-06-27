@@ -29,7 +29,7 @@
               class="p-button-danger action-button"
               icon="pi pi-times"
               iconPos="left"
-              @click="deleteItem(slotProps.item)"
+              @click="deleteDialog(slotProps.item)"
             />
           </div>
         </div>
@@ -37,18 +37,16 @@
     </OrderList>
     <ConfirmDialog></ConfirmDialog>
 
-    <AddItem @setVisible="displayAdd" @saveItem="saveItem" :visible="addPage" />
+    <AddItem @setVisible="displayAdd" @saveItem="save" :visible="addPage" />
   </div>
 </template>
 
 <script>
 import AddItem from "./Add-Item.vue";
-import shopping from "../data/shopping.json";
 import { mapState, mapActions } from "vuex";
 export default {
   data() {
     return {
-      products: null,
       addPage: false,
     };
   },
@@ -57,29 +55,34 @@ export default {
   },
 
   mounted() {
-    this.products = shopping.data;
+    this.getItems();
   },
   computed: {
-    ...mapState("item", ["selected"]),
+    ...mapState("item", ["selected", "products"]),
   },
   methods: {
-    ...mapActions("item", ["saveItem"]),
+    ...mapActions("item", [
+      "saveItem",
+      "setProducts",
+      "getItems",
+      "deleteItem",
+    ]),
+    save() {
+      this.saveItem();
+      this.addPage = !this.addPage;
+    },
     displayAdd() {
       this.addPage = !this.addPage;
-      this.products = shopping.data;
     },
 
-    deleteItem(item) {
+    deleteDialog(item) {
       this.$confirm.require({
         message:
           "Are you sure you want to delete " + item.name + " from the list?",
         header: "Confirmation",
         icon: "pi pi-exclamation-triangle",
         accept: () => {
-          const newProducts = this.products.filter((o) => {
-            return o.code != item.code;
-          });
-          this.products = newProducts;
+          this.deleteItem(item.code);
         },
         reject: () => {
           //callback to execute when user rejects the action
