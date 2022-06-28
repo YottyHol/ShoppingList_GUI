@@ -7,14 +7,19 @@
       iconPos="left"
       @Click="displayAdd()"
     />
-    <OrderList v-model="orderProducts" listStyle="height:auto" dataKey="id">
+    <OrderList
+      id="product-list"
+      v-model="orderProducts"
+      listStyle="height:auto"
+      dataKey="id"
+    >
       <template #header> Shopping List </template>
       <template #item="slotProps">
         <div class="product-item">
           <div class="image-container">
             <img src="../assets/item.png" alt="slotProps.item.name" />
           </div>
-          <div id="product-list" class="product-list-detail">
+          <div class="product-list-detail">
             <h3 class="mb-2">{{ slotProps.item.name }}</h3>
 
             <h4 v-if="slotProps.item.price != 0" class="mb-2">
@@ -26,6 +31,7 @@
           </div>
           <div class="product-list-action">
             <PVButton
+              id="delete-button"
               class="p-button-danger action-button"
               icon="pi pi-times"
               iconPos="left"
