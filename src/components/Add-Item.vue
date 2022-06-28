@@ -65,7 +65,8 @@ export default {
   props: { visible: Boolean },
   data() {
     return {
-      item: { name: "", price: 0.0 },
+      increment: 0,
+      item: { code: 0, name: "", price: 0.0 },
       list: [],
       filteredItems: [],
       info: null,
@@ -75,10 +76,14 @@ export default {
     ...mapActions("item", ["setSelected"]),
     closeItem() {
       this.$emit("setVisible");
-      this.item = { name: "", price: 0.0 };
+      this.item = { code: 0, name: "", price: 0.0 };
     },
     updateItem(event) {
-      this.item = { name: event.target.value.trim(), price: 0 };
+      this.item = {
+        code: this.increment++,
+        name: event.target.value.trim(),
+        price: 0,
+      };
     },
     saveItem() {
       this.setSelected(this.item);
