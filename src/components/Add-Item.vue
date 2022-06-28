@@ -22,6 +22,7 @@
       <div class="field col-12 md:col-4">
         <span class="p-float-label">
           <InputNumber
+            id="price-input"
             class="form-input"
             v-model="item.price"
             mode="currency"
@@ -32,15 +33,24 @@
         </span>
       </div>
     </div>
-    <template #footer>
+    <div>
+      <div id="footer">
+        <PVButton
+          @click="closeItem()"
+          label="Close"
+          icon="pi pi-times"
+          class="p-button-text"
+        />
+      </div>
       <PVButton
-        @click="closeItem()"
-        label="Close"
-        icon="pi pi-times"
-        class="p-button-text"
+        id="add-save-btn"
+        ref="add-save-btn"
+        @click="saveItem()"
+        label="Save"
+        icon="pi pi-check"
+        autofocus
       />
-      <PVButton @click="saveItem()" label="Save" icon="pi pi-check" autofocus />
-    </template>
+    </div>
   </MainDialog>
 </template>
 
@@ -98,3 +108,11 @@ export default {
   },
 };
 </script>
+
+<style>
+#footer {
+  display: inline-block;
+  padding-top: 2rem;
+  padding-right: 2rem;
+}
+</style>

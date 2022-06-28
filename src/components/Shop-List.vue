@@ -14,7 +14,7 @@
           <div class="image-container">
             <img src="../assets/item.png" alt="slotProps.item.name" />
           </div>
-          <div class="product-list-detail">
+          <div id="product-list" class="product-list-detail">
             <h3 class="mb-2">{{ slotProps.item.name }}</h3>
 
             <h4 v-if="slotProps.item.price != 0" class="mb-2">
