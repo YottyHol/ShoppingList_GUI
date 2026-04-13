@@ -56,13 +56,17 @@
 
 <script>
 import { debounce } from "lodash";
-import axios from "axios";
-import { mapActions } from "vuex";
+import { mapActions, mapState } from "vuex";
 export default {
-  mounted() {
-    //
+  created() {
+    this.applySuggestions = debounce((q) => {
+      this.list = this.suggestionsFromList(q);
+    }, 200);
   },
   props: { visible: Boolean },
+  computed: {
+    ...mapState("item", ["products"]),
+  },
   data() {
     return {
       increment: 0,
@@ -89,26 +93,35 @@ export default {
       this.setSelected(this.item);
       this.$emit("saveItem");
     },
+    suggestionsFromList(query) {
+      const q = query.trim().toLowerCase();
+      if (!q) return [];
+      const rows = Array.isArray(this.products) ? this.products : [];
+      const seen = new Set();
+      const out = [];
+      for (const p of rows) {
+        const name = (p.name || "").trim();
+        if (!name.toLowerCase().includes(q)) continue;
+        const key = name.toLowerCase();
+        if (seen.has(key)) continue;
+        seen.add(key);
+        const price = Number.parseFloat(p.price);
+        out.push({
+          name,
+          code: p.code,
+          price: Number.isFinite(price) ? price : 0,
+        });
+        if (out.length >= 15) break;
+      }
+      return out;
+    },
     fetchData(event) {
-      const data = debounce(() => {
-        axios
-          .get(
-            `https://dev.tescolabs.com/grocery/products/?query=` +
-              event.query +
-              `&offset=0&limit=10`,
-            {
-              headers: {
-                "Ocp-Apim-Subscription-Key": "fb3bbf71931c4ad8b75c6a0688ef7d88",
-              },
-            }
-          )
-          .then(
-            (response) => (this.list = response.data.uk.ghs.products.results)
-          )
-          .catch((error) => console.log(error));
-      }, 600);
-
-      data();
+      const q = (event.query || "").trim();
+      if (!q) {
+        this.list = [];
+        return;
+      }
+      this.applySuggestions(q);
     },
   },
 };
